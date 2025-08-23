@@ -1200,7 +1200,7 @@
                 <div class="feature-card">
                     <div class="feature-icon" style="background: linear-gradient(45deg, #667eea, #764ba2);">👥</div>
                     <h3>Comunidade Ativa</h3>
-                    <p>Mais de 50 jogadores registrados em nossa comunidade vibrante e acolhedora com eventos diários.</p>
+                    <p>Mais de 2000 jogadores registrados em nossa comunidade vibrante e acolhedora com eventos diários.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -1252,7 +1252,7 @@
                     <p><strong>📝 Como comprar:</strong></p>
                     <ol style="margin: 15px 0 0 20px; line-height: 1.8;">
                         <li>Faça o pagamento via PIX usando a chave acima</li>
-                        <li>Entre em contato pelo Discord: <strong style="color: #00d4aa;">@dk_campinas</strong></li>
+                        <li>Entre em contato pelo Discord: <strong style="color: #00d4aa;">@dkzinyx</strong></li>
                         <li>Envie o comprovante de pagamento</li>
                         <li>Receba seus itens em até 24 horas</li>
                     </ol>
@@ -1546,4 +1546,940 @@
                     
                     <div class="form-group" style="margin-top: 25px;">
                         <label>📢 Anúncio do Site</label>
-                        <textarea class="form-control" id="siteAnnouncement" placeholder="Digite
+                        <textarea class="form-control" id="siteAnnouncement" placeholder="Digite um novo anúncio para o site" rows="3"></textarea>
+                        <button onclick="updateAnnouncement()" class="btn btn-primary hover-effect" style="margin-top: 10px; width: 100%;">📝 Atualizar Anúncio</button>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label>🎮 Status do Servidor</label>
+                        <select class="form-control" id="serverStatus">
+                            <option value="online">🟢 Online</option>
+                            <option value="maintenance">🟡 Manutenção</option>
+                            <option value="offline">🔴 Offline</option>
+                        </select>
+                        <button onclick="updateServerStatus()" class="btn btn-primary hover-effect" style="margin-top: 10px; width: 100%;">🔄 Alterar Status</button>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>👥 Gerenciamento de Usuários</h3>
+                    <div class="admin-btn-grid">
+                        <button onclick="showUsers()" class="admin-btn hover-effect">
+                            👁️ Ver Usuários Online
+                        </button>
+                        <button onclick="kickUser()" class="admin-btn hover-effect">
+                            👢 Kickar Usuário
+                        </button>
+                        <button onclick="banUser()" class="admin-btn hover-effect">
+                            🔨 Banir Usuário
+                        </button>
+                        <button onclick="unbanUser()" class="admin-btn hover-effect">
+                            🔓 Desbanir Usuário
+                        </button>
+                        <button onclick="sendMessage()" class="admin-btn hover-effect">
+                            📢 Mensagem Global
+                        </button>
+                        <button onclick="muteUser()" class="admin-btn hover-effect">
+                            🔇 Silenciar Usuário
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>🔧 Controle do Servidor</h3>
+                    <div class="admin-btn-grid">
+                        <button onclick="restartServer()" class="admin-btn hover-effect">
+                            🔄 Reiniciar Servidor
+                        </button>
+                        <button onclick="backupData()" class="admin-btn hover-effect">
+                            💾 Backup dos Dados
+                        </button>
+                        <button onclick="clearLogs()" class="admin-btn hover-effect">
+                            🗑️ Limpar Logs
+                        </button>
+                        <button onclick="updateServer()" class="admin-btn hover-effect">
+                            ⬆️ Atualizar Sistema
+                        </button>
+                        <button onclick="maintenanceMode()" class="admin-btn hover-effect">
+                            🛠️ Modo Manutenção
+                        </button>
+                        <button onclick="serverSettings()" class="admin-btn hover-effect">
+                            ⚙️ Configurações
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>💰 Gestão Financeira</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">R$ 1.247</span>
+                            <span class="stat-label">Receita Hoje</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">R$ 8.932</span>
+                            <span class="stat-label">Receita Mensal</span>
+                        </div>
+                    </div>
+                    <div class="admin-btn-grid" style="margin-top: 20px;">
+                        <button onclick="viewSales()" class="admin-btn hover-effect">
+                            📈 Ver Vendas
+                        </button>
+                        <button onclick="addPromotion()" class="admin-btn hover-effect">
+                            🎁 Criar Promoção
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card" style="grid-column: 1 / -1;">
+                    <h3>📋 Logs do Sistema em Tempo Real</h3>
+                    <div class="logs-container" id="logsContainer">
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:25:14]</span> 
+                            <span class="log-message">Sistema iniciado com sucesso</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:25:15]</span> 
+                            <span class="log-message">Banco de dados conectado</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:26:01]</span> 
+                            <span class="log-message">Usuário 'Dk' fez login no painel admin</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:26:45]</span> 
+                            <span class="log-message">Jogador 'PlayerTest123' conectou ao servidor</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:27:12]</span> 
+                            <span class="log-message">Venda processada: VIP Premium - R$ 25,00</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:27:33]</span> 
+                            <span class="log-message">Comando executado: /kick PlayerTest456 (motivo: spam)</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:28:01]</span> 
+                            <span class="log-message">Chave PIX atualizada pelo administrador</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:28:15]</span> 
+                            <span class="log-message">Backup automático realizado com sucesso</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:28:45]</span> 
+                            <span class="log-message">5 novos jogadores conectaram simultaneamente</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:29:12]</span> 
+                            <span class="log-message">Sistema de anti-cheat verificou 78 jogadores</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <button onclick="refreshLogs()" class="btn btn-secondary hover-effect" style="flex: 1;">
+                            🔄 Atualizar Logs
+                        </button>
+                        <button onclick="exportLogs()" class="btn btn-secondary hover-effect" style="flex: 1;">
+                            📤 Exportar Logs
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ ESTADO GLOBAL DA APLICAÇÃO ============
+        let currentUser = null;
+        let isLoading = false;
+        let siteData = {
+            pixKey: '2abb0e24-be91-4f32-8b03-aa92040d5f37',
+            announcement: '',
+            serverStatus: 'online',
+            playerCount: 23,
+            totalUsers: 456,
+            dailySales: 47,
+            uptime: 99.8
+        };
+
+        // ============ SISTEMA DE PARTÍCULAS ============
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // ============ SISTEMA DE NOTIFICAÇÕES ============
+        function showNotification(message, type = 'success', duration = 3000) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
+        // ============ NAVEGAÇÃO E UI ============
+        function showPage(pageId) {
+            // Remove active de todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Remove active de todos os links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Mostra a página selecionada
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                
+                // Adiciona active no link clicado
+                event.target.classList.add('active');
+                
+                // Fecha sidebar no mobile
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+                
+                // Log da navegação
+                addLog(`Navegação: Página '${pageId}' acessada`);
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // ============ SISTEMA DE CÓPIA PIX ============
+        function copyPixKey() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(pixKey).then(() => {
+                    showNotification('🔑 Chave PIX copiada com sucesso!', 'success');
+                    addLog(`Chave PIX copiada: ${pixKey}`);
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(pixKey);
+                });
+            } else {
+                fallbackCopyTextToClipboard(pixKey);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification('🔑 Chave PIX copiada!', 'success');
+                addLog(`Chave PIX copiada: ${text}`);
+            } catch (err) {
+                showNotification('❌ Erro ao copiar chave PIX', 'error');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // ============ SISTEMA DE AUTENTICAÇÃO ADMIN ============
+        function adminLogin(event) {
+            event.preventDefault();
+            
+            if (isLoading) return;
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // Validação básica
+            if (!username || !password) {
+                showNotification('⚠️ Preencha todos os campos!', 'error');
+                return;
+            }
+            
+            // Mostra loading
+            isLoading = true;
+            loginBtn.innerHTML = '<span class="loading-spinner"></span> Verificando...';
+            loginBtn.disabled = true;
+            
+            // Simula delay de autenticação
+            setTimeout(() => {
+                const validCredentials = {
+                    'Dk': 'mateus*14',
+                    'ytheus': 'Ytcampinas'
+                };
+                
+                if (validCredentials[username] && validCredentials[username] === password) {
+                    currentUser = username;
+                    document.getElementById('currentAdmin').textContent = username;
+                    showPage('admin-panel');
+                    showNotification(`🎉 Bem-vindo, ${username}!`, 'success');
+                    addLog(`Administrador '${username}' fez login no sistema`);
+                    
+                    // Limpa o formulário
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    
+                    // Atualiza dados do painel
+                    updateAdminData();
+                } else {
+                    showNotification('❌ Credenciais inválidas! Verifique usuário e senha.', 'error');
+                    addLog(`Tentativa de login falhada para usuário: ${username}`);
+                }
+                
+                // Remove loading
+                isLoading = false;
+                loginBtn.innerHTML = 'Entrar no Sistema';
+                loginBtn.disabled = false;
+            }, 1500);
+        }
+
+        function logout() {
+            if (currentUser) {
+                addLog(`Administrador '${currentUser}' fez logout do sistema`);
+                showNotification(`👋 Até logo, ${currentUser}!`, 'success');
+                currentUser = null;
+            }
+            showPage('home');
+        }
+
+        // ============ FUNÇÕES ADMINISTRATIVAS ============
+        function updatePixKey() {
+            const newKey = document.getElementById('editPixKey').value.trim();
+            if (newKey) {
+                if (validatePixKey(newKey)) {
+                    siteData.pixKey = newKey;
+                    document.getElementById('pixKey').textContent = newKey;
+                    document.getElementById('editPixKey').value = '';
+                    addLog(`Chave PIX atualizada para: ${newKey}`);
+                    showNotification('💳 Chave PIX atualizada com sucesso!', 'success');
+                } else {
+                    showNotification('❌ Formato de chave PIX inválido!', 'error');
+                }
+            } else {
+                showNotification('⚠️ Digite uma chave PIX válida!', 'error');
+            }
+        }
+
+        function validatePixKey(key) {
+            // Validação básica de email ou CPF/CNPJ
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\(?(\d{2})\)?\s?9?\d{4,5}-?\d{4}$/;
+            const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+            
+            return emailRegex.test(key) || phoneRegex.test(key) || cpfRegex.test(key) || key.length >= 10;
+        }
+
+        function updateAnnouncement() {
+            const announcement = document.getElementById('siteAnnouncement').value.trim();
+            if (announcement) {
+                siteData.announcement = announcement;
+                document.getElementById('siteAnnouncement').value = '';
+                addLog(`Anúncio do site atualizado: ${announcement.substring(0, 50)}...`);
+                showNotification('📢 Anúncio atualizado com sucesso!', 'success');
+            } else {
+                showNotification('⚠️ Digite um anúncio válido!', 'error');
+            }
+        }
+
+        function updateServerStatus() {
+            const status = document.getElementById('serverStatus').value;
+            const statusMap = {
+                'online': '🟢 Online',
+                'maintenance': '🟡 Manutenção',
+                'offline': '🔴 Offline'
+            };
+            
+            siteData.serverStatus = status;
+            const statusElements = document.querySelectorAll('.status-value');
+            statusElements.forEach(el => {
+                if (el.textContent.includes('Online') || el.textContent.includes('Manutenção') || el.textContent.includes('Offline')) {
+                    el.textContent = statusMap[status];
+                }
+            });
+            
+            addLog(`Status do servidor alterado para: ${statusMap[status]}`);
+            showNotification(`🔄 Status alterado para: ${statusMap[status]}`, 'success');
+        }
+
+        function refreshStats() {
+            showNotification('🔄 Atualizando estatísticas...', 'success');
+            
+            // Simula atualização de dados
+            setTimeout(() => {
+                siteData.playerCount = Math.floor(Math.random() * 100) + 50;
+                siteData.totalUsers = Math.floor(Math.random() * 1000) + 400;
+                siteData.dailySales = Math.floor(Math.random() * 100) + 20;
+                siteData.uptime = (99 + Math.random()).toFixed(1);
+                
+                updateAdminData();
+                addLog('Estatísticas do servidor atualizadas');
+                showNotification('✅ Estatísticas atualizadas!', 'success');
+            }, 1000);
+        }
+
+        function updateAdminData() {
+            // Atualiza contadores na sidebar e páginas
+            document.getElementById('playerCount').textContent = `${siteData.playerCount}/100`;
+            document.getElementById('adminPlayerCount').textContent = siteData.playerCount;
+            document.getElementById('totalUsers').textContent = siteData.totalUsers;
+            document.getElementById('dailySales').textContent = siteData.dailySales;
+            document.getElementById('serverUptimeAdmin').textContent = siteData.uptime + '%';
+            
+            // Atualiza na página de informações
+            const infoPlayerCount = document.getElementById('infoPlayerCount');
+            if (infoPlayerCount) {
+                infoPlayerCount.textContent = `${siteData.playerCount}/100`;
+            }
+            
+            const serverUptime = document.getElementById('serverUptime');
+            if (serverUptime) {
+                serverUptime.textContent = siteData.uptime + '%';
+            }
+        }
+
+        // ============ GERENCIAMENTO DE USUÁRIOS ============
+        function showUsers() {
+            const users = [
+                'PlayerTest123', 'GamerPro456', 'RoleplayMaster', 
+                'CampinasFan', 'VipUser789', 'NoobPlayer001',
+                'ProDriver88', 'CityBuilder99', 'RPExpert777'
+            ];
+            
+            const userList = users.slice(0, Math.floor(Math.random() * users.length) + 5);
+            const message = `👥 Jogadores Online (${userList.length}/${siteData.playerCount}):\n\n${userList.join('\n')}`;
+            
+            alert(message);
+            addLog(`Lista de usuários visualizada (${userList.length} jogadores)`);
+        }
+
+        function kickUser() {
+            const username = prompt('👢 Digite o nome do usuário para kickar:');
+            if (username && username.trim()) {
+                const reason = prompt('📝 Motivo do kick (opcional):') || 'Sem motivo especificado';
+                addLog(`Comando executado: /kick ${username.trim()} - Motivo: ${reason} (admin: ${currentUser})`);
+                showNotification(`👢 Usuário '${username.trim()}' foi removido do servidor!`, 'success');
+            }
+        }
+
+        function banUser() {
+            const username = prompt('🔨 Digite o nome do usuário para banir:');
+            if (username && username.trim()) {
+                const reason = prompt('📝 Motivo do banimento:') || 'Sem motivo especificado';
+                const duration = prompt('⏰ Duração (horas, deixe vazio para permanente):') || 'permanente';
+                addLog(`Comando executado: /ban ${username.trim()} - Duração: ${duration} - Motivo: ${reason} (admin: ${currentUser})`);
+                showNotification(`🔨 Usuário '${username.trim()}' foi banido!`, 'success');
+            }
+        }
+
+        function unbanUser() {
+            const username = prompt('🔓 Digite o nome do usuário para desbanir:');
+            if (username && username.trim()) {
+                addLog(`Comando executado: /unban ${username.trim()} (admin: ${currentUser})`);
+                showNotification(`🔓 Usuário '${username.trim()}' foi desbanido!`, 'success');
+            }
+        }
+
+        function muteUser() {
+            const username = prompt('🔇 Digite o nome do usuário para silenciar:');
+            if (username && username.trim()) {
+                const duration = prompt('⏰ Duração em minutos:') || '30';
+                addLog(`Comando executado: /mute ${username.trim()} ${duration}min (admin: ${currentUser})`);
+                showNotification(`🔇 Usuário '${username.trim()}' foi silenciado por ${duration} minutos!`, 'success');
+            }
+        }
+
+        function sendMessage() {
+            const message = prompt('📢 Digite a mensagem global:');
+            if (message && message.trim()) {
+                addLog(`Mensagem global enviada: "${message.trim()}" (admin: ${currentUser})`);
+                showNotification('📢 Mensagem global enviada para todos os jogadores!', 'success');
+            }
+        }
+
+        // ============ CONTROLE DO SERVIDOR ============
+        function restartServer() {
+            if (confirm('⚠️ Tem certeza que deseja reiniciar o servidor?\n\nTodos os jogadores serão desconectados temporariamente.')) {
+                showNotification('🔄 Servidor será reiniciado em 30 segundos...', 'success');
+                addLog(`Reinicialização do servidor iniciada pelo admin: ${currentUser}`);
+                
+                // Simula processo de reinicialização
+                setTimeout(() => {
+                    addLog('Servidor reiniciado com sucesso');
+                    showNotification('✅ Servidor reiniciado com sucesso!', 'success');
+                }, 5000);
+            }
+        }
+
+        function backupData() {
+            showNotification('💾 Iniciando backup dos dados...', 'success');
+            addLog(`Backup manual iniciado pelo admin: ${currentUser}`);
+            
+            // Simula progresso do backup
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 20;
+                if (progress <= 100) {
+                    addLog(`Backup em progresso: ${progress}% concluído`);
+                } else {
+                    clearInterval(interval);
+                    addLog('Backup concluído com sucesso - Todos os dados salvos');
+                    showNotification('✅ Backup concluído com sucesso!', 'success');
+                }
+            }, 800);
+        }
+
+        function clearLogs() {
+            if (confirm('⚠️ Tem certeza que deseja limpar todos os logs?\n\nEsta ação não pode ser desfeita.')) {
+                const timestamp = new Date().toLocaleString('pt-BR');
+                document.getElementById('logsContainer').innerHTML = 
+                    `<div class="log-entry">
+                        <span class="log-timestamp">[${timestamp}]</span>
+                        <span class="log-message">Logs limpos pelo admin: ${currentUser}</span>
+                    </div>`;
+                showNotification('🗑️ Logs limpos com sucesso!', 'success');
+            }
+        }
+
+        function updateServer() {
+            if (confirm('🔄 Deseja verificar e instalar atualizações?\n\nO processo pode levar alguns minutos.')) {
+                showNotification('⬆️ Verificando atualizações...', 'success');
+                addLog(`Verificação de atualizações iniciada pelo admin: ${currentUser}`);
+                
+                setTimeout(() => {
+                    const version = '2.1.' + (Math.floor(Math.random() * 10) + 6);
+                    addLog(`Sistema atualizado para versão ${version}`);
+                    addLog('Novos recursos e correções de bugs aplicados');
+                    showNotification(`✅ Servidor atualizado para v${version}!`, 'success');
+                }, 3000);
+            }
+        }
+
+        function maintenanceMode() {
+            const isMaintenanceMode = siteData.serverStatus === 'maintenance';
+            const action = isMaintenanceMode ? 'desativar' : 'ativar';
+            
+            if (confirm(`🛠️ Deseja ${action} o modo manutenção?`)) {
+                siteData.serverStatus = isMaintenanceMode ? 'online' : 'maintenance';
+                addLog(`Modo manutenção ${isMaintenanceMode ? 'desativado' : 'ativado'} pelo admin: ${currentUser}`);
+                showNotification(`🛠️ Modo manutenção ${isMaintenanceMode ? 'desativado' : 'ativado'}!`, 'success');
+            }
+        }
+
+        function serverSettings() {
+            alert('⚙️ Configurações do Servidor:\n\n• Max Players: 100\n• Anti-Cheat: Ativado\n• Auto-Backup: A cada 6 horas\n• Chat Filter: Ativo\n• PvP System: Ativo\n• Economy: Balanceado');
+            addLog(`Configurações do servidor visualizadas pelo admin: ${currentUser}`);
+        }
+
+        // ============ GESTÃO FINANCEIRA ============
+        function viewSales() {
+            const sales = [
+                'VIP Premium - R$ 25,00',
+                'Cash Pack - R$ 10,00',
+                'Veículo Exclusivo - R$ 20,00',
+                'VIP Básico - R$ 15,00',
+                'Casa Premium - R$ 30,00'
+            ];
+            alert(`📈 Últimas Vendas:\n\n${sales.join('\n')}\n\nTotal de hoje: R$ ${siteData.dailySales * 18.50}`);
+            addLog(`Relatório de vendas visualizado pelo admin: ${currentUser}`);
+        }
+
+        function addPromotion() {
+            const promotion = prompt('🎁 Digite o nome da promoção:');
+            if (promotion && promotion.trim()) {
+                const discount = prompt('💸 Desconto em % (ex: 20):') || '10';
+                addLog(`Nova promoção criada: ${promotion.trim()} - ${discount}% de desconto (admin: ${currentUser})`);
+                showNotification(`🎁 Promoção '${promotion.trim()}' criada com ${discount}% de desconto!`, 'success');
+            }
+        }
+
+        // ============ SISTEMA DE LOGS ============
+        function addLog(message) {
+            const timestamp = new Date().toLocaleString('pt-BR');
+            const logsContainer = document.getElementById('logsContainer');
+            
+            if (logsContainer) {
+                const newLog = document.createElement('div');
+                newLog.className = 'log-entry';
+                newLog.innerHTML = `
+                    <span class="log-timestamp">[${timestamp}]</span>
+                    <span class="log-message">${message}</span>
+                `;
+                
+                logsContainer.appendChild(newLog);
+                logsContainer.scrollTop = logsContainer.scrollHeight;
+                
+                // Mantém apenas os últimos 50 logs
+                const logs = logsContainer.querySelectorAll('.log-entry');
+                if (logs.length > 50) {
+                    logs[0].remove();
+                }
+            }
+        }
+
+        function refreshLogs() {
+            addLog(`Logs atualizados pelo admin: ${currentUser}`);
+            showNotification('🔄 Logs atualizados!', 'success');
+        }
+
+        function exportLogs() {
+            const logs = document.querySelectorAll('.log-entry');
+            let logText = 'LOGS DO SISTEMA [RP] CAMPINAS\n';
+            logText += '================================\n\n';
+            
+            logs.forEach(log => {
+                logText += log.textContent + '\n';
+            });
+            
+            const blob = new Blob([logText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `logs_rp_campinas_${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            addLog(`Logs exportados pelo admin: ${currentUser}`);
+            showNotification('📤 Logs exportados com sucesso!', 'success');
+        }
+
+        // ============ SIMULAÇÃO DE ATIVIDADE DO SERVIDOR ============
+        function simulateServerActivity() {
+            const activities = [
+                'Novo jogador conectou ao servidor',
+                'Venda processada na loja premium',
+                'Sistema de anti-cheat verificou jogadores',
+                'Backup automático realizado',
+                'Evento especial iniciado no servidor',
+                'Moderação automática ativada',
+                'Cache do servidor otimizado',
+                'Estatísticas do servidor atualizadas',
+                'Player recebeu recompensa diária',
+                'Nova casa foi comprada por um jogador',
+                'Veículo personalizado foi entregue',
+                'Chat moderado automaticamente',
+                'Sistema de economia balanceado',
+                'Jogador completou missão especial'
+            ];
+            
+            setInterval(() => {
+                if (Math.random() < 0.4) { // 40% chance a cada intervalo
+                    const activity = activities[Math.floor(Math.random() * activities.length)];
+                    addLog(activity);
+                }
+                
+                // Atualiza ping aleatoriamente
+                const ping = Math.floor(Math.random() * 50) + 15;
+                const pingElement = document.getElementById('serverPing');
+                if (pingElement) {
+                    pingElement.textContent = ping + 'ms';
+                }
+                
+                // Simula flutuação do número de jogadores
+                if (Math.random() < 0.2) { // 20% chance
+                    const change = Math.floor(Math.random() * 6) - 3; // -3 a +3
+                    siteData.playerCount = Math.max(50, Math.min(100, siteData.playerCount + change));
+                    updateAdminData();
+                }
+            }, 20000); // A cada 20 segundos
+        }
+
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                // Simula vendas aleatórias
+                if (Math.random() < 0.1) { // 10% chance
+                    siteData.dailySales++;
+                    const products = ['VIP Premium', 'VIP Básico', 'Cash Pack', 'Veículo Exclusivo', 'Casa Premium'];
+                    const product = products[Math.floor(Math.random() * products.length)];
+                    addLog(`Nova venda processada: ${product}`);
+                    updateAdminData();
+                }
+                
+                // Atualiza uptime
+                const uptimeFluctuation = (Math.random() - 0.5) * 0.2;
+                siteData.uptime = Math.max(98.0, Math.min(100.0, siteData.uptime + uptimeFluctuation));
+                updateAdminData();
+            }, 30000); // A cada 30 segundos
+        }
+
+        // ============ EFEITOS VISUAIS E ANIMAÇÕES ============
+        function addTypingEffect(element, text, speed = 100) {
+            element.textContent = '';
+            element.classList.add('typing-effect');
+            
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    element.classList.remove('typing-effect');
+                }
+            }, speed);
+        }
+
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(number => {
+                const finalValue = parseInt(number.textContent.replace(/[^\d]/g, ''));
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        number.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        number.textContent = Math.floor(currentValue);
+                    }
+                }, 50);
+            });
+        }
+
+        // ============ RESPONSIVIDADE E EVENTOS ============
+        function handleResize() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        }
+
+        function handleClickOutside(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        }
+
+        // ============ INICIALIZAÇÃO DO SISTEMA ============
+        document.addEventListener('DOMContentLoaded', function() {
+            // Criar partículas de fundo
+            createParticles();
+            
+            // Iniciar simulações
+            setTimeout(() => {
+                simulateServerActivity();
+                simulateRealTimeUpdates();
+            }, 2000);
+            
+            // Adicionar logs iniciais
+            setTimeout(() => {
+                addLog('Site carregado com sucesso');
+                addLog('Todos os sistemas operacionais');
+                addLog('Monitoramento em tempo real ativado');
+            }, 1000);
+            
+            // Event listeners
+            window.addEventListener('resize', handleResize);
+            document.addEventListener('click', handleClickOutside);
+            
+            // Previne que cliques dentro da sidebar a fechem
+            document.getElementById('sidebar').addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+            
+            // Animações iniciais
+            setTimeout(() => {
+                animateNumbers();
+            }, 500);
+            
+            // Atualiza dados iniciais
+            updateAdminData();
+            
+            // Adiciona efeito de hover nos cards
+            document.querySelectorAll('.feature-card, .store-item, .admin-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            // Sistema de atalhos de teclado para admins
+            document.addEventListener('keydown', function(event) {
+                if (currentUser && event.ctrlKey) {
+                    switch(event.key) {
+                        case '1':
+                            event.preventDefault();
+                            showUsers();
+                            break;
+                        case '2':
+                            event.preventDefault();
+                            refreshStats();
+                            break;
+                        case '3':
+                            event.preventDefault();
+                            refreshLogs();
+                            break;
+                        case 'l':
+                            event.preventDefault();
+                            logout();
+                            break;
+                    }
+                }
+            });
+            
+            // Adiciona tooltips informativos
+            if (currentUser) {
+                showNotification('💡 Dica: Use Ctrl+1/2/3 para ações rápidas, Ctrl+L para logout', 'success', 5000);
+            }
+            
+            console.log('🎮 [RP] Campinas - Sistema carregado com sucesso!');
+            console.log('🛠️ Versão: 2.1.5');
+            console.log('👨‍💻 Desenvolvido para o melhor servidor de RP brasileiro');
+        });
+
+        // ============ FUNÇÕES DE UTILIDADE ============
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function formatDate(date) {
+            return new Intl.DateTimeFormat('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            }).format(date);
+        }
+
+        function generateRandomId() {
+            return Math.random().toString(36).substr(2, 9);
+        }
+
+        // ============ SISTEMA DE CACHE E PERFORMANCE ============
+        const cache = new Map();
+
+        function getCachedData(key) {
+            const cached = cache.get(key);
+            if (cached && Date.now() - cached.timestamp < 300000) { // 5 minutos
+                return cached.data;
+            }
+            return null;
+        }
+
+        function setCachedData(key, data) {
+            cache.set(key, {
+                data: data,
+                timestamp: Date.now()
+            });
+        }
+
+        // ============ MONITORAMENTO DE PERFORMANCE ============
+        function logPerformance(action, startTime) {
+            const endTime = performance.now();
+            const duration = endTime - startTime;
+            if (duration > 100) { // Log apenas ações que levam mais de 100ms
+                addLog(`Performance: ${action} levou ${duration.toFixed(2)}ms`);
+            }
+        }
+
+        // ============ SISTEMA DE BACKUP LOCAL ============
+        function saveToLocalStorage() {
+            try {
+                const dataToSave = {
+                    siteData,
+                    lastUpdate: Date.now()
+                };
+                localStorage.setItem('rp_campinas_data', JSON.stringify(dataToSave));
+            } catch (error) {
+                console.warn('Não foi possível salvar no localStorage:', error);
+            }
+        }
+
+        function loadFromLocalStorage() {
+            try {
+                const saved = localStorage.getItem('rp_campinas_data');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Date.now() - parsed.lastUpdate < 86400000) { // 24 horas
+                        Object.assign(siteData, parsed.siteData);
+                        return true;
+                    }
+                }
+            } catch (error) {
+                console.warn('Não foi possível carregar do localStorage:', error);
+            }
+            return false;
+        }
+
+        // Salva dados automaticamente
+        setInterval(saveToLocalStorage, 60000); // A cada minuto
+
+        // ============ EASTER EGGS E RECURSOS ESPECIAIS ============
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+        document.addEventListener('keydown', function(event) {
+            konamiCode.push(event.code);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+                showNotification('🎉 Código Konami ativado! Recursos especiais desbloqueados!', 'success', 5000);
+                addLog('Easter egg descoberto: Código Konami ativado');
+                
+                // Ativa efeitos especiais
+                document.body.style.animation = 'gradientShift 2s ease infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 10000);
+                
+                konamiCode = [];
+            }
+        });
+
+        // ============ FINALIZAÇÃO ============
+        // Exporta funções para uso global se necessário
+        window.RPCampinas = {
+            showPage,
+            toggleSidebar,
+            copyPixKey,
+            adminLogin,
+            logout,
+            addLog,
+            showNotification
+        };
+
+        // Log final
+        console.log('%c🎮 [RP] CAMPINAS - SISTEMA INICIADO! 🎮', 'color: #667eea; font-size: 16px; font-weight: bold;');
+        console.log('%c🚀 Todas as funcionalidades carregadas com sucesso!', 'color: #00d4aa; font-weight: bold;');
+    </script>
+</body>
+</html>
