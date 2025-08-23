@@ -1,8 +1,13 @@
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
 }
 
 header {
@@ -10,6 +15,7 @@ header {
     color: white;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header nav ul {
@@ -19,34 +25,130 @@ header nav ul {
 
 header nav ul li {
     display: inline;
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 header nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #f39c12;
 }
 
 .banner {
-    background: url('banner-image.jpg') no-repeat center center;
-    background-size: cover;
+    background: url('imagens/banner.jpg') no-repeat center center/cover;
     color: white;
+    text-align: center;
     padding: 100px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.banner h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: fadeIn 2s ease;
+}
+
+.banner p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.section {
+    padding: 50px 20px;
     text-align: center;
 }
 
-section {
-    padding: 50px 20px;
+.produtos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.produto {
+    width: 280px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
     text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.produto:hover {
+    transform: translateY(-10px);
+}
+
+.produto img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.produto h3 {
+    margin-top: 10px;
+}
+
+.produto p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.produto button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.produto button:hover {
+    background-color: #2ecc71;
+    transform: scale(1.05);
 }
 
 footer {
     background-color: #2c3e50;
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
