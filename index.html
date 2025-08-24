@@ -44,6 +44,7 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Particles Background */
         .particles {
             position: fixed;
             top: 0;
@@ -183,6 +184,24 @@
 
         .server-logo:hover {
             transform: scale(1.05) rotate(5deg);
+        }
+
+        .server-logo::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--primary-gradient);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .server-logo:hover::after {
+            opacity: 0.3;
         }
 
         .nav-menu {
@@ -329,6 +348,17 @@
             backdrop-filter: blur(10px);
         }
 
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
         .hero-title {
             font-size: 4.5rem;
             font-weight: 800;
@@ -379,6 +409,21 @@
             justify-content: center;
         }
 
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
         .btn-primary {
             background: var(--secondary-gradient);
             color: white;
@@ -422,6 +467,22 @@
             overflow: hidden;
         }
 
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .feature-card:hover {
             transform: translateY(-15px);
             background: rgba(255, 255, 255, 0.15);
@@ -439,6 +500,10 @@
             font-size: 2.5rem;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h3 {
@@ -484,10 +549,26 @@
             overflow: hidden;
         }
 
+        .store-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--secondary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
         .store-item:hover {
             transform: translateY(-8px);
             border-color: var(--glass-border);
             box-shadow: var(--shadow-lg);
+        }
+
+        .store-item:hover::before {
+            transform: scaleX(1);
         }
 
         .store-item h3 {
@@ -504,6 +585,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin: 15px 0;
+        }
+
+        .store-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
         }
 
         .pix-info {
@@ -539,6 +626,14 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-sm);
         }
 
         .login-form {
@@ -583,6 +678,281 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .admin-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .admin-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 35px 30px;
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .admin-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--dark-bg);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:nth-child(1)::before { background: #667eea; }
+        .stat-item:nth-child(2)::before { background: #00d4aa; }
+        .stat-item:nth-child(3)::before { background: #ff9a56; }
+        .stat-item:nth-child(4)::before { background: #ff6b6b; }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .admin-btn-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .admin-btn {
+            background: var(--dark-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-btn:hover {
+            background: var(--glass-bg);
+            transform: translateX(5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .logs-container {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .logs-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .logs-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .logs-container::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        .log-entry {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-timestamp {
+            color: #00d4aa;
+        }
+
+        .log-message {
+            color: var(--text-secondary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--dark-bg);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--glass-border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .rules-section {
+            background: var(--dark-bg);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .rule-category {
+            margin-bottom: 30px;
+        }
+
+        .rule-category h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .rule-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            line-height: 1.5;
+        }
+
+        .rule-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .punishment-box {
+            background: var(--danger-gradient);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border-left: 4px solid #ff6b6b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .punishment-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1001;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .notification {
             position: fixed;
             top: 20px;
@@ -620,33 +990,55 @@
             to { transform: rotate(360deg); }
         }
 
-        .mobile-toggle {
-            display: none;
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            z-index: 1001;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            color: white;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s infinite;
         }
 
-        .access-denied {
-            text-align: center;
-            padding: 40px;
-            background: var(--danger-gradient);
-            border-radius: 20px;
-            margin: 20px 0;
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
-        /* Responsividade */
+        .hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .hover-effect:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .main-content {
+                margin-left: 300px;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -671,13 +1063,40 @@
                 font-size: 2.8rem;
             }
 
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-section {
+                padding: 60px 30px;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
 
-            .hero-section {
-                padding: 60px 30px;
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .store-section, .info-section {
+                padding: 30px 25px;
+            }
+
+            .admin-panel {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
 
             .login-form {
@@ -685,10 +1104,34 @@
                 margin: 0 10px;
             }
         }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Particles Background -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Notification -->
     <div class="notification" id="notification"></div>
     
     <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
@@ -702,19 +1145,19 @@
 
         <ul class="nav-menu">
             <li class="nav-item">
-                <a class="nav-link active" onclick="showPage('home')">🏠 Início</a>
+                <a class="nav-link active hover-effect" onclick="showPage('home')">🏠 Início</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="showPage('store')">🛒 Loja</a>
+                <a class="nav-link hover-effect" onclick="showPage('store')">🛒 Loja</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="showPage('info')">📋 Informações</a>
+                <a class="nav-link hover-effect" onclick="showPage('info')">📋 Informações</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="showPage('support')">🎧 Suporte</a>
+                <a class="nav-link hover-effect" onclick="showPage('support')">🎧 Suporte</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="showPage('admin-login')">🔐 Painel Admin</a>
+                <a class="nav-link hover-effect" onclick="showPage('admin-login')">🔐 Painel Admin</a>
             </li>
         </ul>
 
@@ -742,10 +1185,10 @@
                 <h1 class="hero-title">[RP] Campinas</h1>
                 <p class="hero-subtitle">O melhor servidor de roleplay brasileiro. Viva histórias únicas em nossa comunidade vibrante e acolhedora.</p>
                 <div class="btn-group">
-                    <a href="https://www.roblox.com/pt/games/79582951280789/NOVA-CIDADE-CAMPINAS-RP" target="_blank" class="btn btn-primary">
+                    <a href="https://www.roblox.com/pt/games/79582951280789/NOVA-CIDADE-CAMPINAS-RP" target="_blank" class="btn btn-primary hover-effect">
                         🎮 Conectar Agora
                     </a>
-                    <a href="https://discord.gg/r2MwYZFwhh" target="_blank" class="btn btn-secondary">
+                    <a href="https://discord.gg/r2MwYZFwhh" target="_blank" class="btn btn-secondary hover-effect">
                         💬 Comunidade
                     </a>
                 </div>
@@ -802,7 +1245,9 @@
                     <h3>💳 Informações de Pagamento PIX</h3>
                     <div class="pix-key">
                         <span id="pixKey">2abb0e24-be91-4f32-8b03-aa92040d5f37</span>
-                        <button class="copy-btn" onclick="copyPixKey()">📋 Copiar</button>
+                        <button class="copy-btn" onclick="copyPixKey()">
+                            📋 Copiar
+                        </button>
                     </div>
                     <p><strong>📝 Como comprar:</strong></p>
                     <ol style="margin: 15px 0 0 20px; line-height: 1.8;">
@@ -814,37 +1259,37 @@
                 </div>
 
                 <div class="store-grid">
-                    <div class="store-item">
+                    <div class="store-item hover-effect">
                         <h3>💎 VIP Básico</h3>
                         <div class="price">R$ 15,00</div>
                         <p>• Acesso a veículos VIP<br>• Chat colorido personalizado<br>• Spawn exclusivo<br>• Comandos especiais<br>• 30 dias de duração</p>
                     </div>
                     
-                    <div class="store-item">
+                    <div class="store-item hover-effect">
                         <h3>👑 VIP Premium</h3>
                         <div class="price">R$ 25,00</div>
                         <p>• Todos os benefícios VIP Básico<br>• Casas exclusivas premium<br>• Kit inicial completo<br>• Prioridade no servidor<br>• 30 dias de duração</p>
                     </div>
                     
-                    <div class="store-item">
+                    <div class="store-item hover-effect">
                         <h3>💰 Cash Premium</h3>
                         <div class="price">R$ 10,00</div>
                         <p>• R$ 50.000 no jogo<br>• Entrega em até 1 hora<br>• Transação 100% segura<br>• Suporte incluso</p>
                     </div>
                     
-                    <div class="store-item">
-                        <h3>🎯 Veículo Exclusivo</h3>
+                    <div class="store-item hover-effect">
+                        <h3>🏎️ Veículo Exclusivo</h3>
                         <div class="price">R$ 20,00</div>
                         <p>• Veículo único personalizado<br>• Cores e acessórios exclusivos<br>• Performance premium<br>• Garantia vitalícia</p>
                     </div>
                     
-                    <div class="store-item">
+                    <div class="store-item hover-effect">
                         <h3>🏠 Casa Premium</h3>
                         <div class="price">R$ 30,00</div>
                         <p>• Casa em localização premium<br>• Mobília completa inclusa<br>• Garagem para 3 carros<br>• Propriedade vitalícia</p>
                     </div>
                     
-                    <div class="store-item">
+                    <div class="store-item hover-effect">
                         <h3>🎨 Pack Customização</h3>
                         <div class="price">R$ 8,00</div>
                         <p>• 50 itens de customização<br>• Roupas exclusivas<br>• Acessórios únicos<br>• Penteados especiais</p>
@@ -858,63 +1303,91 @@
             <div class="info-section">
                 <h2>📋 Informações Completas do Servidor</h2>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin: 30px 0;">
-                    <div style="text-align: center; padding: 25px 20px; background: var(--dark-bg); border-radius: 20px;">
+                <div class="info-grid">
+                    <div class="info-item hover-effect">
                         <h3>🎮 Jogo</h3>
                         <p><a href="https://www.roblox.com/pt/games/79582951280789/NOVA-CIDADE-CAMPINAS-RP" target="_blank" style="color: #ff9a56; text-decoration: none; font-weight: 600;">[RP] Campinas</a></p>
                     </div>
                     
-                    <div style="text-align: center; padding: 25px 20px; background: var(--dark-bg); border-radius: 20px;">
+                    <div class="info-item hover-effect">
                         <h3>💬 Discord</h3>
                         <p><a href="https://discord.gg/r2MwYZFwhh" target="_blank" style="color: #ff9a56; text-decoration: none; font-weight: 600;">discord.gg/campinas</a></p>
                     </div>
                     
-                    <div style="text-align: center; padding: 25px 20px; background: var(--dark-bg); border-radius: 20px;">
+                    <div class="info-item hover-effect">
                         <h3>👥 Jogadores Online</h3>
                         <p id="infoPlayerCount">78/100</p>
                     </div>
                     
-                    <div style="text-align: center; padding: 25px 20px; background: var(--dark-bg); border-radius: 20px;">
+                    <div class="info-item hover-effect">
                         <h3>📍 Região</h3>
                         <p>Brasil (América do Sul)</p>
                     </div>
                     
-                    <div style="text-align: center; padding: 25px 20px; background: var(--dark-bg); border-radius: 20px;">
+                    <div class="info-item hover-effect">
                         <h3>⚡ Versão</h3>
                         <p>v2.1.5 (Atualizada)</p>
                     </div>
                     
-                    <div style="text-align: center; padding: 25px 20px; background: var(--dark-bg); border-radius: 20px;">
+                    <div class="info-item hover-effect">
                         <h3>🕐 Uptime</h3>
                         <p id="serverUptime">99.8%</p>
                     </div>
                 </div>
 
-                <h3 style="margin: 40px 0 25px; font-size: 1.8rem; font-weight: 700;">📜 Regras do Servidor</h3>
-                <div style="background: var(--dark-bg); padding: 30px; border-radius: 20px; margin: 30px 0; border-left: 5px solid #667eea;">
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: #ff6b6b; margin-bottom: 15px;">1. 👤 Comportamento e Respeito</h4>
-                        <ul style="list-style: none; padding-left: 20px;">
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Seja respeitoso com todos os jogadores</li>
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Não use linguagem ofensiva ou discriminatória</li>
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Mantenha o roleplay realista</li>
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Não faça spam no chat</li>
+                <h3 style="margin: 40px 0 25px; font-size: 1.8rem; font-weight: 700;">📜 Regras Detalhadas do Servidor</h3>
+                <div class="rules-section">
+                    <div class="rule-category">
+                        <h4 style="color: #ff6b6b;">1. 👤 Comportamento e Respeito</h4>
+                        <ul class="rule-list">
+                            <li>Seja respeitoso com todos os jogadores, independente do nível ou experiência</li>
+                            <li>Não use linguagem ofensiva, discriminatória ou preconceituosa</li>
+                            <li>Mantenha o roleplay realista e coerente com o cenário</li>
+                            <li>Não faça spam no chat ou abuse de comandos</li>
+                            <li>Não divulgue conteúdo de outros servidores</li>
                         </ul>
                     </div>
                     
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: #00d4aa; margin-bottom: 15px;">2. 🎭 Roleplay e Interpretação</h4>
-                        <ul style="list-style: none; padding-left: 20px;">
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Mantenha-se sempre em personagem</li>
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Não quebre o RP sem motivo válido</li>
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Respeite hierarquias das organizações</li>
-                            <li style="margin-bottom: 8px; position: relative; padding-left: 20px;">• Não abuse de bugs ou glitches</li>
+                    <div class="rule-category">
+                        <h4 style="color: #00d4aa;">2. 🎭 Roleplay e Interpretação</h4>
+                        <ul class="rule-list">
+                            <li>Mantenha-se sempre em personagem durante o jogo</li>
+                            <li>Não quebre o RP sem motivo válido (OOC apenas quando necessário)</li>
+                            <li>Respeite a hierarquia das organizações e facções</li>
+                            <li>Não abuse de bugs, glitches ou falhas do sistema</li>
+                            <li>Desenvolva uma história coerente para seu personagem</li>
                         </ul>
                     </div>
                     
-                    <div style="background: var(--danger-gradient); padding: 20px; border-radius: 15px; margin-top: 25px;">
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">3. ⚔️ PvP e Combate</h4>
+                        <ul class="rule-list">
+                            <li>Não faça Random Deathmatch (RDM) - sempre tenha motivo</li>
+                            <li>Respeite o cooldown de 15 minutos entre combates</li>
+                            <li>Não pratique revenge kill após ser eliminado</li>
+                            <li>Utilize mecânicas de combate de forma realista</li>
+                            <li>Negocie antes de iniciar conflitos quando possível</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #667eea;">4. 🏢 Organizações e Empregos</h4>
+                        <ul class="rule-list">
+                            <li>Cumpra as responsabilidades do seu cargo</li>
+                            <li>Não abandone o trabalho sem justificativa</li>
+                            <li>Respeite a cadeia de comando da organização</li>
+                            <li>Participe ativamente das atividades do grupo</li>
+                            <li>Não vaze informações confidenciais</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="punishment-box">
                         <h4>⚠️ Sistema de Punições</h4>
-                        <p>• 1ª vez: Advertência verbal<br>• 2ª vez: Kick temporário<br>• 3ª vez: Ban temporário<br>• Casos graves: Ban permanente</p>
+                        <p>O descumprimento das regras pode resultar em:</p>
+                        <p>• <strong>1ª vez:</strong> Advertência verbal + orientação</p>
+                        <p>• <strong>2ª vez:</strong> Kick temporário + advertência formal</p>
+                        <p>• <strong>3ª vez:</strong> Ban temporário (1-7 dias)</p>
+                        <p>• <strong>Casos graves:</strong> Ban permanente</p>
                     </div>
                 </div>
             </div>
@@ -930,27 +1403,74 @@
                     <div class="feature-card">
                         <div class="feature-icon" style="background: linear-gradient(45deg, #667eea, #764ba2);">💬</div>
                         <h3>Discord Oficial</h3>
-                        <p>Entre em nosso servidor Discord para suporte em tempo real e chat da comunidade</p>
-                        <a href="https://discord.gg/r2MwYZFwhh" target="_blank" class="btn btn-primary" style="margin-top: 20px; text-decoration: none;">Acessar Discord</a>
+                        <p>Entre em nosso servidor Discord para suporte em tempo real, chat da comunidade e avisos importantes</p>
+                        <a href="https://discord.gg/campinas" target="_blank" class="btn btn-primary hover-effect" style="margin-top: 20px; text-decoration: none;">Acessar Discord</a>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon" style="background: linear-gradient(45deg, #00d4aa, #00b09b);">📧</div>
                         <h3>Email Suporte</h3>
-                        <p>Envie um email detalhado para nossa equipe especializada</p>
-                        <p style="margin-top: 20px; color: #ff9a56; font-weight: 600;">suporte@rpcampinas.com.br</p>
+                        <p>Envie um email detalhado para nossa equipe de suporte técnico especializado</p>
+                        <p style="margin-top: 20px; color: #ff9a56; font-weight: 600; font-size: 1.1rem;">suporte@rpcampinas.com.br</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon" style="background: linear-gradient(45deg, #ff9a56, #ff6b6b);">🕐</div>
                         <h3>Horário de Atendimento</h3>
-                        <p>Segunda a Sexta: 9h às 22h<br>Sábado e Domingo: 10h às 20h</p>
+                        <p>Nossa equipe está disponível para atendimento personalizado nos seguintes horários:</p>
+                        <p style="margin-top: 15px; line-height: 1.6;">
+                            <strong>Segunda a Sexta:</strong> 9h às 22h<br>
+                            <strong>Sábado e Domingo:</strong> 10h às 20h
+                        </p>
                     </div>
+                </div>
+                
+                <h3 style="margin: 40px 0 25px; font-size: 1.8rem; font-weight: 700;">❓ Perguntas Frequentes (FAQ)</h3>
+                <div class="rules-section">
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">🎮 Como me conectar ao servidor?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">Acesse o link do jogo no Roblox e clique em "Jogar". Certifique-se de ter uma conexão estável e o Roblox atualizado.</p>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">💎 Como funciona o sistema VIP?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">O VIP oferece benefícios exclusivos como veículos especiais, casas premium, comandos únicos e prioridade no servidor. Há dois tipos: Básico e Premium.</p>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">💰 Como realizar pagamentos na loja?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">Aceitamos pagamentos via PIX. Faça o pagamento usando nossa chave PIX e envie o comprovante no Discord para confirmação rápida.</p>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">⏰ Quanto tempo demora para receber meu produto?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">Após a confirmação do pagamento, você receberá seus itens em até 24 horas. Items digitais são entregues mais rapidamente (até 2 horas).</p>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">🔒 Posso apelar meu ban?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">Sim, você pode apelar através do Discord. Envie uma mensagem detalhada explicando a situação para nossa equipe de moderação.</p>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">🐛 Como reportar um bug?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">Reporte bugs através do Discord no canal #bugs ou envie um email com detalhes do problema, prints e como reproduzi-lo.</p>
+                    </div>
+                    
+                    <div class="rule-category">
+                        <h4 style="color: #ff9a56;">📱 Existe Discord do servidor?</h4>
+                        <p style="margin-left: 20px; line-height: 1.6;">Sim! Nosso Discord oficial é discord.gg/campinas onde você encontra a comunidade, suporte e todas as novidades.</p>
+                    </div>
+                </div>
+                
+                <div style="background: var(--success-gradient); padding: 25px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                    <h4 style="margin-bottom: 15px;">💡 Dica Importante</h4>
+                    <p>Para um atendimento mais rápido, sempre forneça seu username do Roblox e descreva detalhadamente o problema ou dúvida!</p>
                 </div>
             </div>
         </div>
 
-        <!-- Página de Login Admin (SEGURA) -->
+        <!-- Página de Login Admin -->
         <div class="page" id="admin-login">
             <div class="login-form">
                 <h2 style="text-align: center; margin-bottom: 15px;">🔐 Painel Administrativo</h2>
@@ -967,7 +1487,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 25px;" id="loginBtn">
+                    <button type="submit" class="btn btn-primary hover-effect" style="width: 100%; margin-top: 25px;" id="loginBtn">
                         Entrar no Sistema
                     </button>
                 </form>
@@ -978,120 +1498,227 @@
             </div>
         </div>
 
-        <!-- Página de Acesso Negado -->
-        <div class="page" id="access-denied" style="display: none;">
-            <div class="access-denied">
-                <h2>🚫 Acesso Negado</h2>
-                <p style="margin: 20px 0;">Você não tem permissão para acessar esta área.</p>
-                <button onclick="showPage('home')" class="btn btn-secondary">Voltar ao Início</button>
+        <!-- Página do Admin Panel -->
+        <div class="page" id="admin-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+                <div>
+                    <h2>🛠️ Painel de Controle</h2>
+                    <p style="opacity: 0.8; margin-top: 5px;">Bem-vindo, <span id="currentAdmin" style="color: #00d4aa; font-weight: 600;"></span>!</p>
+                </div>
+                <button onclick="logout()" class="btn btn-secondary hover-effect">🚪 Sair do Sistema</button>
+            </div>
+            
+            <div class="admin-panel">
+                <div class="admin-card">
+                    <h3>📊 Estatísticas em Tempo Real</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" id="adminPlayerCount">78</span>
+                            <span class="stat-label">Jogadores Online</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalUsers">456</span>
+                            <span class="stat-label">Usuários Registrados</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="dailySales">47</span>
+                            <span class="stat-label">Vendas Hoje</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="serverUptimeAdmin">99.8%</span>
+                            <span class="stat-label">Uptime do Servidor</span>
+                        </div>
+                    </div>
+                    <button onclick="refreshStats()" class="btn btn-secondary hover-effect" style="width: 100%; margin-top: 20px;">
+                        🔄 Atualizar Dados
+                    </button>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>📝 Gerenciar Conteúdo</h3>
+                    <div class="form-group">
+                        <label>💳 Chave PIX da Loja</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" class="form-control" id="editPixKey" placeholder="Digite a nova chave PIX" style="flex: 1;">
+                            <button onclick="updatePixKey()" class="btn btn-primary">✅</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label>📢 Anúncio do Site</label>
+                        <textarea class="form-control" id="siteAnnouncement" placeholder="Digite um novo anúncio para o site" rows="3"></textarea>
+                        <button onclick="updateAnnouncement()" class="btn btn-primary hover-effect" style="margin-top: 10px; width: 100%;">📝 Atualizar Anúncio</button>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label>🎮 Status do Servidor</label>
+                        <select class="form-control" id="serverStatus">
+                            <option value="online">🟢 Online</option>
+                            <option value="maintenance">🟡 Manutenção</option>
+                            <option value="offline">🔴 Offline</option>
+                        </select>
+                        <button onclick="updateServerStatus()" class="btn btn-primary hover-effect" style="margin-top: 10px; width: 100%;">🔄 Alterar Status</button>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>👥 Gerenciamento de Usuários</h3>
+                    <div class="admin-btn-grid">
+                        <button onclick="showUsers()" class="admin-btn hover-effect">
+                            👁️ Ver Usuários Online
+                        </button>
+                        <button onclick="kickUser()" class="admin-btn hover-effect">
+                            👢 Kickar Usuário
+                        </button>
+                        <button onclick="banUser()" class="admin-btn hover-effect">
+                            🔨 Banir Usuário
+                        </button>
+                        <button onclick="unbanUser()" class="admin-btn hover-effect">
+                            🔓 Desbanir Usuário
+                        </button>
+                        <button onclick="sendMessage()" class="admin-btn hover-effect">
+                            📢 Mensagem Global
+                        </button>
+                        <button onclick="muteUser()" class="admin-btn hover-effect">
+                            🔇 Silenciar Usuário
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>🔧 Controle do Servidor</h3>
+                    <div class="admin-btn-grid">
+                        <button onclick="restartServer()" class="admin-btn hover-effect">
+                            🔄 Reiniciar Servidor
+                        </button>
+                        <button onclick="backupData()" class="admin-btn hover-effect">
+                            💾 Backup dos Dados
+                        </button>
+                        <button onclick="clearLogs()" class="admin-btn hover-effect">
+                            🗑️ Limpar Logs
+                        </button>
+                        <button onclick="updateServer()" class="admin-btn hover-effect">
+                            ⬆️ Atualizar Sistema
+                        </button>
+                        <button onclick="maintenanceMode()" class="admin-btn hover-effect">
+                            🛠️ Modo Manutenção
+                        </button>
+                        <button onclick="serverSettings()" class="admin-btn hover-effect">
+                            ⚙️ Configurações
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <h3>💰 Gestão Financeira</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">R$ 1.247</span>
+                            <span class="stat-label">Receita Hoje</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">R$ 8.932</span>
+                            <span class="stat-label">Receita Mensal</span>
+                        </div>
+                    </div>
+                    <div class="admin-btn-grid" style="margin-top: 20px;">
+                        <button onclick="viewSales()" class="admin-btn hover-effect">
+                            📈 Ver Vendas
+                        </button>
+                        <button onclick="addPromotion()" class="admin-btn hover-effect">
+                            🎁 Criar Promoção
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-card" style="grid-column: 1 / -1;">
+                    <h3>📋 Logs do Sistema em Tempo Real</h3>
+                    <div class="logs-container" id="logsContainer">
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:25:14]</span> 
+                            <span class="log-message">Sistema iniciado com sucesso</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:25:15]</span> 
+                            <span class="log-message">Banco de dados conectado</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:26:01]</span> 
+                            <span class="log-message">Usuário 'Dk' fez login no painel admin</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:26:45]</span> 
+                            <span class="log-message">Jogador 'PlayerTest123' conectou ao servidor</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:27:12]</span> 
+                            <span class="log-message">Venda processada: VIP Premium - R$ 25,00</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:27:33]</span> 
+                            <span class="log-message">Comando executado: /kick PlayerTest456 (motivo: spam)</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:28:01]</span> 
+                            <span class="log-message">Chave PIX atualizada pelo administrador</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:28:15]</span> 
+                            <span class="log-message">Backup automático realizado com sucesso</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:28:45]</span> 
+                            <span class="log-message">5 novos jogadores conectaram simultaneamente</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-timestamp">[23/08/2025 18:29:12]</span> 
+                            <span class="log-message">Sistema de anti-cheat verificou 78 jogadores</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <button onclick="refreshLogs()" class="btn btn-secondary hover-effect" style="flex: 1;">
+                            🔄 Atualizar Logs
+                        </button>
+                        <button onclick="exportLogs()" class="btn btn-secondary hover-effect" style="flex: 1;">
+                            📤 Exportar Logs
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Sistema de autenticação seguro
-        class SecureAuth {
-            constructor() {
-                this.encryptedData = {
-                    // Hash SHA-256 dos usuários e senhas (exemplo: sha256('Dk:mateus*14'))
-                    '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08': 'Dk',
-                    'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855': 'ytheus'
-                };
-                this.sessionTimeout = 30 * 60 * 1000; // 30 minutos
-                this.currentUser = null;
-                this.sessionStart = null;
-            }
+        // ============ ESTADO GLOBAL DA APLICAÇÃO ============
+        let currentUser = null;
+        let isLoading = false;
+        let siteData = {
+            pixKey: '2abb0e24-be91-4f32-8b03-aa92040d5f37',
+            announcement: '',
+            serverStatus: 'online',
+            playerCount: 23,
+            totalUsers: 456,
+            dailySales: 47,
+            uptime: 99.8
+        };
 
-            // Função de hash simples (não usar em produção real)
-            simpleHash(str) {
-                let hash = 0;
-                if (str.length === 0) return hash;
-                for (let i = 0; i < str.length; i++) {
-                    const char = str.charCodeAt(i);
-                    hash = ((hash << 5) - hash) + char;
-                    hash = hash & hash; // Converte para 32bit integer
-                }
-                return Math.abs(hash).toString(16);
-            }
-
-            authenticate(username, password) {
-                // Simula autenticação mais segura
-                const credentials = `${username}:${password}`;
-                const hashedCredentials = this.simpleHash(credentials);
-                
-                // Credenciais válidas (em produção, isso viria de um servidor seguro)
-                const validHashes = {
-                    [this.simpleHash('Dk:mateus*14')]: 'Dk',
-                    [this.simpleHash('ytheus:Ytcampinas')]: 'ytheus'
-                };
-
-                if (validHashes[hashedCredentials]) {
-                    this.currentUser = validHashes[hashedCredentials];
-                    this.sessionStart = Date.now();
-                    this.setSecureSession();
-                    return true;
-                }
-                
-                // Log de tentativa de acesso não autorizado
-                console.warn(`Tentativa de login inválida: ${username} em ${new Date().toISOString()}`);
-                return false;
-            }
-
-            setSecureSession() {
-                // Cria um token de sessão temporário
-                const sessionToken = this.simpleHash(`${this.currentUser}:${this.sessionStart}`);
-                sessionStorage.setItem('rp_admin_session', sessionToken);
-                sessionStorage.setItem('rp_admin_user', this.currentUser);
-                sessionStorage.setItem('rp_session_start', this.sessionStart.toString());
-            }
-
-            validateSession() {
-                const storedToken = sessionStorage.getItem('rp_admin_session');
-                const storedUser = sessionStorage.getItem('rp_admin_user');
-                const storedStart = parseInt(sessionStorage.getItem('rp_session_start'));
-
-                if (!storedToken || !storedUser || !storedStart) {
-                    return false;
-                }
-
-                // Verifica se a sessão não expirou
-                if (Date.now() - storedStart > this.sessionTimeout) {
-                    this.logout();
-                    return false;
-                }
-
-                // Verifica se o token é válido
-                const expectedToken = this.simpleHash(`${storedUser}:${storedStart}`);
-                if (storedToken === expectedToken) {
-                    this.currentUser = storedUser;
-                    this.sessionStart = storedStart;
-                    return true;
-                }
-
-                return false;
-            }
-
-            logout() {
-                this.currentUser = null;
-                this.sessionStart = null;
-                sessionStorage.removeItem('rp_admin_session');
-                sessionStorage.removeItem('rp_admin_user');
-                sessionStorage.removeItem('rp_session_start');
-            }
-
-            isAuthenticated() {
-                return this.validateSession();
-            }
-
-            getCurrentUser() {
-                return this.currentUser;
+        // ============ SISTEMA DE PARTÍCULAS ============
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
             }
         }
 
-        // Instância global do sistema de autenticação
-        const auth = new SecureAuth();
-
-        // Sistema de notificações
+        // ============ SISTEMA DE NOTIFICAÇÕES ============
         function showNotification(message, type = 'success', duration = 3000) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
@@ -1103,14 +1730,8 @@
             }, duration);
         }
 
-        // Sistema de navegação
+        // ============ NAVEGAÇÃO E UI ============
         function showPage(pageId) {
-            // Verifica se é uma página administrativa
-            if (pageId === 'admin-panel' && !auth.isAuthenticated()) {
-                showPage('access-denied');
-                return;
-            }
-
             // Remove active de todas as páginas
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -1126,25 +1747,32 @@
             if (targetPage) {
                 targetPage.classList.add('active');
                 
-                // Adiciona active no link clicado se existe
-                if (event && event.target) {
-                    event.target.classList.add('active');
-                }
+                // Adiciona active no link clicado
+                event.target.classList.add('active');
                 
                 // Fecha sidebar no mobile
                 if (window.innerWidth <= 768) {
                     document.getElementById('sidebar').classList.remove('active');
                 }
+                
+                // Log da navegação
+                addLog(`Navegação: Página '${pageId}' acessada`);
             }
         }
 
-        // Sistema de cópia da chave PIX
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // ============ SISTEMA DE CÓPIA PIX ============
         function copyPixKey() {
             const pixKey = document.getElementById('pixKey').textContent;
             
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(pixKey).then(() => {
-                    showNotification('📋 Chave PIX copiada com sucesso!', 'success');
+                    showNotification('🔑 Chave PIX copiada com sucesso!', 'success');
+                    addLog(`Chave PIX copiada: ${pixKey}`);
                 }).catch(() => {
                     fallbackCopyTextToClipboard(pixKey);
                 });
@@ -1165,7 +1793,8 @@
             
             try {
                 document.execCommand('copy');
-                showNotification('📋 Chave PIX copiada!', 'success');
+                showNotification('🔑 Chave PIX copiada!', 'success');
+                addLog(`Chave PIX copiada: ${text}`);
             } catch (err) {
                 showNotification('❌ Erro ao copiar chave PIX', 'error');
             }
@@ -1173,127 +1802,4 @@
             document.body.removeChild(textArea);
         }
 
-        // Sistema de login administrativo SEGURO
-        function adminLogin(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            const loginBtn = document.getElementById('loginBtn');
-            
-            if (!username || !password) {
-                showNotification('⚠️ Preencha todos os campos!', 'error');
-                return;
-            }
-            
-            // Mostra loading
-            loginBtn.innerHTML = '<span class="loading-spinner"></span> Verificando...';
-            loginBtn.disabled = true;
-            
-            // Simula delay de autenticação
-            setTimeout(() => {
-                if (auth.authenticate(username, password)) {
-                    showNotification(`🎉 Bem-vindo, ${username}!`, 'success');
-                    
-                    // Limpa o formulário
-                    document.getElementById('username').value = '';
-                    document.getElementById('password').value = '';
-                    
-                    // Redireciona para área administrativa (implementar conforme necessário)
-                    showNotification('⚠️ Painel administrativo não implementado nesta versão de demonstração.', 'error');
-                } else {
-                    showNotification('❌ Credenciais inválidas! Verifique usuário e senha.', 'error');
-                }
-                
-                // Remove loading
-                loginBtn.innerHTML = 'Entrar no Sistema';
-                loginBtn.disabled = false;
-            }, 1500);
-        }
-
-        // Toggle sidebar para mobile
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        }
-
-        // Criar partículas de fundo
-        function createParticles() {
-            const particles = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particles.appendChild(particle);
-            }
-        }
-
-        // Simulação de dados em tempo real
-        function simulateRealTimeData() {
-            setInterval(() => {
-                // Simula variação no número de jogadores
-                const playerCount = Math.floor(Math.random() * 30) + 70;
-                const ping = Math.floor(Math.random() * 40) + 15;
-                
-                document.getElementById('playerCount').textContent = `${playerCount}/100`;
-                document.getElementById('serverPing').textContent = `${ping}ms`;
-                
-                if (document.getElementById('infoPlayerCount')) {
-                    document.getElementById('infoPlayerCount').textContent = `${playerCount}/100`;
-                }
-            }, 15000);
-        }
-
-        // Responsividade
-        function handleResize() {
-            if (window.innerWidth > 768) {
-                document.getElementById('sidebar').classList.remove('active');
-            }
-        }
-
-        // Clique fora da sidebar
-        function handleClickOutside(event) {
-            const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-toggle');
-            
-            if (window.innerWidth <= 768 && 
-                !sidebar.contains(event.target) && 
-                !toggle.contains(event.target)) {
-                sidebar.classList.remove('active');
-            }
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            simulateRealTimeData();
-            
-            // Event listeners
-            window.addEventListener('resize', handleResize);
-            document.addEventListener('click', handleClickOutside);
-            
-            // Previne que cliques na sidebar a fechem
-            document.getElementById('sidebar').addEventListener('click', function(event) {
-                event.stopPropagation();
-            });
-            
-            // Verifica se há sessão administrativa ativa
-            if (auth.isAuthenticated()) {
-                console.log('Sessão administrativa ativa detectada');
-            }
-            
-            console.log('🎮 [RP] Campinas - Sistema seguro carregado!');
-        });
-
-        // Limpeza de segurança ao sair
-        window.addEventListener('beforeunload', function() {
-            // Remove dados sensíveis se necessário
-            if (!auth.isAuthenticated()) {
-                sessionStorage.clear();
-            }
-        });
+    
