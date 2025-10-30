@@ -1,253 +1,373 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[RP] Campinas - Servidor de Roleplay</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #ff9a56 0%, #ffad56 100%);
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --text-primary: #ffffff;
-            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+export default function NoxClan() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('home');
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            color: var(--text-primary);
-            min-height: 100vh;
-        }
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+  const navItems = [
+    { id: 'home', label: '🏠 Início', icon: '🏠' },
+    { id: 'loja', label: '🛍️ Loja', icon: '🛍️' },
+    { id: 'info', label: '📋 Informações', icon: '📋' },
+    { id: 'recruitment', label: '⚔️ Recrutamento', icon: '⚔️' },
+    { id: 'requirements', label: '✅ Requisitos', icon: '✅' },
+    { id: 'discord', label: '💬 Discord', icon: '💬' },
+    { id: 'suporte', label: '🎧 Suporte', icon: '🎧' },
+  ];
 
-        .fade-in { animation: fadeIn 0.6s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px);} to { opacity: 1; transform: translateY(0);} }
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 300px;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid var(--glass-border);
-            padding: 25px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .server-info { text-align: center; margin-bottom: 30px; }
-        .server-logo img {
-            width: 120px;
-            height: 120px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-md);
-            object-fit: cover;
-        }
-
-        .nav-menu { list-style: none; margin-bottom: 30px; padding: 0; }
-        .nav-item { margin-bottom: 10px; }
-        .nav-link {
-            display: block; padding: 15px 20px; border-radius: 12px;
-            background: var(--glass-bg); color: white; text-decoration: none;
-            transition: all 0.3s; border: 1px solid transparent;
-            font-size: 1rem;
-        }
-        .nav-link:hover, .nav-link.active { background: var(--primary-gradient); box-shadow: var(--shadow-md); }
-
-        .status-box {
-            padding: 15px; background: rgba(0, 200, 0, 0.1);
-            border-left: 5px solid #00ff00; border-radius: 12px;
-        }
-
-        .main-content { margin-left: 320px; padding: 30px; }
-        .page { display: none; }
-        .page.active { display: block; }
-
-        .hero-section, .content-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow-md);
-            animation: fadeIn 0.6s ease;
-        }
-
-        .hero-title { font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
-        .hero-subtitle { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
-
-        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .btn {
-            padding: 14px 30px; border-radius: 50px;
-            font-weight: 600; text-decoration: none; transition: 0.3s;
-        }
-        .btn-primary { background: var(--secondary-gradient); color: white; }
-        .btn-secondary { background: var(--glass-bg); border: 1px solid var(--glass-border); color: white; }
-        .btn-special { background: var(--primary-gradient); color: white; font-size: 1.1rem; display: inline-block; margin-top: 10px; }
-        .btn:hover { transform: scale(1.05); }
-
-        .card-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-        .info-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: var(--shadow-md);
-            transition: 0.3s;
-            animation: fadeIn 0.6s ease;
-            text-align: center;
-        }
-        .info-card:hover { transform: translateY(-5px); }
-        .info-card h3 { margin-bottom: 15px; }
-    </style>
-</head>
-<body>
-    <div class="sidebar">
-        <div class="server-info">
-            <div class="server-logo">
-                <img src="https://static.vecteezy.com/system/resources/previews/009/391/057/non_2x/crown-icon-transparent-free-png.png" alt="Campinas RP">
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <div className="flex">
+        {/* Sidebar */}
+        <aside className="hidden md:flex flex-col w-80 bg-black border-r-2 border-red-700 p-8 min-h-screen fixed left-0 top-0">
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <div className="inline-block mb-4">
+                <div className="w-24 h-24 bg-red-900 rounded-lg flex items-center justify-center font-bold text-5xl border-2 border-red-600">
+                  ⚔️
+                </div>
+              </div>
+              <h1 className="text-4xl font-black text-red-600 mb-2 tracking-wider">NOX</h1>
+              <p className="text-sm text-gray-500 font-bold">Clan Minecraft</p>
             </div>
-            <h3>[RP] Campinas</h3>
-            <p>Servidor de Roleplay</p>
-            <a href="https://www.roblox.com/pt/games/79582951280789/NOVA-CIDADE-CAMPINAS-RP" target="_blank" class="btn btn-special">▶ Jogar Agora</a>
-        </div>
-        <ul class="nav-menu">
-            <li class="nav-item"><a class="nav-link active" onclick="showPage('home')">🏠 Início</a></li>
-            <li class="nav-item"><a class="nav-link" onclick="showPage('store')">🛒 Loja</a></li>
-            <li class="nav-item"><a class="nav-link" onclick="showPage('info')">📋 Informações</a></li>
-            <li class="nav-item"><a class="nav-link" onclick="showPage('support')">🎧 Suporte</a></li>
-        </ul>
-        <div class="status-box">
-            <h4>Status do Servidor</h4>
-            <p>Status: 🟢 Online</p>
-            <p>Jogadores: <span id="playerCount">78/100</span></p>
-            <p>Ping: <span id="serverPing">23ms</span></p>
-        </div>
+
+            <button className="w-full py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 text-sm tracking-wide mb-6 border-2 border-red-500">
+              ▶ ENTRAR AGORA
+            </button>
+
+            <div className="space-y-2">
+              {navItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-lg transition-all font-bold text-sm tracking-wide ${
+                    activeTab === item.id
+                      ? 'bg-red-700 text-white border-2 border-red-500'
+                      : 'bg-gray-900 text-gray-400 hover:bg-gray-800 border-2 border-gray-700'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-auto">
+            <div className="text-xs text-gray-600 text-center">
+              © 2024 NOX CLAN
+            </div>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="w-full md:ml-80 bg-gradient-to-b from-gray-950 to-black min-h-screen">
+          {/* Top Navigation Mobile */}
+          <nav className="md:hidden bg-black border-b-2 border-red-700 sticky top-0 z-50 px-4 py-4 flex justify-between items-center">
+            <h1 className="text-3xl font-black text-red-600 tracking-wider">NOX</h1>
+            <button onClick={toggleMenu} className="text-red-600">
+              {menuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </nav>
+
+          {menuOpen && (
+            <div className="md:hidden bg-black border-b-2 border-red-700 p-4 space-y-2">
+              {navItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-3 text-red-600 hover:bg-red-950/30 transition-all border border-red-700 rounded"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* HOME */}
+          {activeTab === 'home' && (
+            <section className="p-6 md:p-10">
+              {/* Header Section */}
+              <div className="bg-red-950/40 border-2 border-red-700 rounded-2xl p-10 mb-8">
+                <h2 className="text-5xl md:text-6xl font-black text-red-600 mb-4 tracking-wider">NOX CLAN</h2>
+                <p className="text-lg text-gray-300 mb-6 leading-relaxed max-w-3xl">
+                  Somos uma elite de guerreiros Minecraft. Conquistadores de territórios, construtores de impérios. Junte-se ao NOX e faça parte da melhor comunidade PvP do servidor.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button onClick={() => setActiveTab('recruitment')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                    Candidatar-se
+                  </button>
+                  <button onClick={() => setActiveTab('info')} className="px-8 py-3 border-2 border-red-600 text-red-600 hover:bg-red-950/30 rounded-lg font-bold transition-all">
+                    Saber Mais
+                  </button>
+                </div>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                {[
+                  { label: 'Minecraft', value: '▶ Jogar Agora', icon: '⛏️' },
+                  { label: 'Membros', value: '∞', icon: '👥' },
+                  { label: 'Status', value: 'ATIVO', icon: '🟢' },
+                  { label: 'Poder', value: '█████', icon: '⚔️' }
+                ].map((stat, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-6 text-center hover:border-red-500 transition-all">
+                    <p className="text-3xl mb-2">{stat.icon}</p>
+                    <p className="text-xs text-gray-400 mb-2 font-bold">{stat.label}</p>
+                    <p className="text-sm font-black text-red-600">{stat.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Features Grid */}
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { title: '⚔️ PvP Dominação', desc: 'Seja o melhor em combates e conquiste respeito.' },
+                  { title: '🏰 Construções Épicas', desc: 'Construa fortalezas impenetráveis.' },
+                  { title: '👥 Comunidade', desc: 'Guerreiros dedicados sob um estandarte.' },
+                  { title: '💎 Recursos', desc: 'Acesso a itens e ferramentas exclusivas.' },
+                  { title: '🛡️ Proteção', desc: 'Defenda seu território e seus aliados.' },
+                  { title: '👑 Liderança', desc: 'Seja referência no servidor.' }
+                ].map((feat, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-6 hover:border-red-500 transition-all">
+                    <h3 className="text-xl font-bold text-red-500 mb-2">{feat.title}</h3>
+                    <p className="text-gray-400 text-sm">{feat.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* LOJA */}
+          {activeTab === 'loja' && (
+            <section className="p-6 md:p-10">
+              <h2 className="text-5xl font-black text-red-600 mb-8 tracking-wider">🛍️ LOJA</h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { title: 'Diamond Pass', desc: 'Acesso a recursos premium', price: 'R$ 29,90', icon: '💎' },
+                  { title: 'Builder Master', desc: 'Ferramentas de construção avançadas', price: 'R$ 49,90', icon: '🏗️' },
+                  { title: 'PvP Elite', desc: 'Itens exclusivos para combate', price: 'R$ 39,90', icon: '⚔️' },
+                  { title: 'Home Premium', desc: 'Base personalizável com plugins', price: 'R$ 19,90', icon: '🏠' },
+                  { title: 'Proteção Total', desc: 'Sistema anti-grief completo', price: 'R$ 59,90', icon: '🛡️' },
+                  { title: 'Rank Vip', desc: 'Status exclusivo no servidor', price: 'R$ 79,90', icon: '👑' }
+                ].map((item, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-6 hover:border-red-500 transition-all">
+                    <p className="text-4xl mb-3">{item.icon}</p>
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-400 mb-4">{item.desc}</p>
+                    <p className="text-2xl font-black text-red-600 mb-4">{item.price}</p>
+                    <button className="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition-all border border-red-500">
+                      Comprar
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* DISCORD */}
+          {activeTab === 'discord' && (
+            <section className="p-6 md:p-10">
+              <h2 className="text-5xl font-black text-red-600 mb-8 tracking-wider">💬 DISCORD</h2>
+              
+              <div className="bg-red-950/40 border-2 border-red-700 rounded-2xl p-12 mb-8 text-center">
+                <p className="text-6xl mb-6">💬</p>
+                <p className="text-2xl font-bold text-red-600 mb-4">Junte-se ao Servidor Discord do NOX</p>
+                <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+                  Conecte com membros do clan, participe de discussões, receba atualizações e forme estratégias com seus guerreiros. O Discord é o coração da comunidade NOX.
+                </p>
+                <button className="px-12 py-4 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500 text-lg">
+                  💬 Entrar no Discord
+                </button>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {[
+                  { title: '📢 Anúncios', desc: 'Fique atualizado com notícias do clan' },
+                  { title: '💬 Chat', desc: 'Converse com membros em tempo real' },
+                  { title: '🎮 Eventos', desc: 'Participe de torneios e eventos especiais' },
+                  { title: '🎯 Estratégia', desc: 'Planeje ataques e defesas' },
+                  { title: '🏆 Rankings', desc: 'Veja o ranking de membros' },
+                  { title: '📋 Suporte', desc: 'Tire dúvidas com os moderadores' }
+                ].map((feat, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-red-600 mb-2">{feat.title}</h3>
+                    <p className="text-gray-400 text-sm">{feat.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <button onClick={() => setActiveTab('home')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                ← Voltar ao Início
+              </button>
+            </section>
+          )}
+
+          {/* INFORMAÇÕES */}
+          {activeTab === 'info' && (
+            <section className="p-6 md:p-10">
+              <h2 className="text-5xl font-black text-red-600 mb-8 tracking-wider">📋 INFORMAÇÕES</h2>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {[
+                  { title: '⚔️ Minecraft', desc: 'Jogar no servidor', btn: '▶ Jogar Agora', action: 'home' },
+                  { title: '👥 Membros', desc: '∞ guerreiros ativos', btn: '∞ Membros', action: 'home' },
+                  { title: '💬 Discord', desc: 'Conecte com o clan', btn: '💬 Entrar', action: 'discord' },
+                  { title: '🏆 Objetivos', desc: 'Conheça nossa missão', btn: '🏆 Ver', action: 'home' }
+                ].map((info, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-8 text-center hover:border-red-500 transition-all">
+                    <h3 className="text-2xl font-black text-red-600 mb-3">{info.title}</h3>
+                    <p className="text-gray-400 mb-6">{info.desc}</p>
+                    <button onClick={() => setActiveTab(info.action)} className="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition-all border-2 border-red-500">
+                      {info.btn}
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-red-950/40 border-2 border-red-700 rounded-2xl p-10 mb-8">
+                <h3 className="text-4xl font-black text-red-600 mb-8">🎯 OBJETIVOS DO CLAN</h3>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { icon: '⚔️', title: 'Dominação PvP', desc: 'Ser a força suprema em combates. Cada vitória nos aproxima do poder absoluto no servidor.' },
+                    { icon: '🏰', title: 'Expansão Territorial', desc: 'Conquistar e defender territórios estratégicos. Expandir nossos domínios constantemente.' },
+                    { icon: '👥', title: 'Comunidade Forte', desc: 'Unir guerreiros dedicados sob o estandarte NOX. Construir uma família leal e unida.' },
+                    { icon: '🏗️', title: 'Construções Épicas', desc: 'Criar estruturas monumentais que marcam presença no servidor. Deixar legado.' },
+                    { icon: '💪', title: 'Evolução Contínua', desc: 'Sempre melhorar e se adaptar aos desafios. Nunca cessar a busca por excelência.' },
+                    { icon: '👑', title: 'Liderança', desc: 'Ser referência e inspiração para outros clans. Estabelecer padrões altos de conduta.' }
+                  ].map((obj, idx) => (
+                    <div key={idx} className="bg-black border-2 border-red-700 rounded-lg p-6 hover:border-red-500 transition-all">
+                      <p className="text-4xl mb-3">{obj.icon}</p>
+                      <h4 className="text-xl font-bold text-red-600 mb-3">{obj.title}</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">{obj.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button onClick={() => setActiveTab('home')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                ← Voltar ao Início
+              </button>
+            </section>
+          )}
+
+          {/* RECRUTAMENTO */}
+          {activeTab === 'recruitment' && (
+            <section className="p-6 md:p-10">
+              <h2 className="text-5xl font-black text-red-600 mb-8 tracking-wider">⚔️ RECRUTAMENTO</h2>
+              
+              <div className="bg-red-950/40 border-2 border-red-700 rounded-2xl p-10 mb-8">
+                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                  Procuramos por guerreiros excepcionais. Se você tem habilidade, dedicação e vontade de conquistar, o NOX é seu lugar.
+                </p>
+                
+                <div className="bg-black border-2 border-red-700 rounded-lg p-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-6">COMO SE INSCREVER?</h3>
+                  <ol className="space-y-4 text-gray-300">
+                    {[
+                      'Verifique os requisitos mínimos',
+                      'Entre em contato com um membro no Discord',
+                      'Demonstre suas habilidades em combate',
+                      'Aguarde a votação dos membros atuais',
+                      'Se aprovado, receba sua tag NOX'
+                    ].map((step, i) => (
+                      <li key={i} className="flex gap-4">
+                        <span className="text-red-600 font-bold min-w-8 text-xl">{i + 1}.</span>
+                        <span className="text-base">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+
+              <button onClick={() => setActiveTab('home')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                ← Voltar ao Início
+              </button>
+            </section>
+          )}
+
+          {/* REQUISITOS */}
+          {activeTab === 'requirements' && (
+            <section className="p-6 md:p-10">
+              <h2 className="text-5xl font-black text-red-600 mb-8 tracking-wider">✅ REQUISITOS</h2>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {[
+                  {
+                    title: '✅ OBRIGATÓRIOS',
+                    items: ['Mínimo 16 anos', 'Jogar 4+ horas/semana', 'Microfone + Discord', 'PvP intermediário+', 'Respeitar código', 'Disposição p/ aprender']
+                  },
+                  {
+                    title: '⭐ DESEJÁVEL',
+                    items: ['Exp. em PvP grupo', 'Trabalho em equipe', 'Conhecimento tático', 'Skill em construção', 'Sem bans por cheating', 'Atitude agressiva']
+                  },
+                  {
+                    title: '❌ PROIBIDO',
+                    items: ['Hacks/Cheats', 'Toxicidade', 'Inatividade prolongada', 'Compartilhar credenciais', 'Discriminação', 'Falta de compromisso']
+                  }
+                ].map((section, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-red-600 mb-4">{section.title}</h3>
+                    <ul className="space-y-2">
+                      {section.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                          <span className="text-red-600 mt-1">▸</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-red-950/40 border-2 border-red-700 rounded-xl p-8 text-center mb-8">
+                <p className="text-lg font-bold mb-4 text-gray-300">Atende aos requisitos?</p>
+                <button onClick={() => setActiveTab('recruitment')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                  Candidatar Agora
+                </button>
+              </div>
+
+              <button onClick={() => setActiveTab('home')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                ← Voltar ao Início
+              </button>
+            </section>
+          )}
+
+          {/* SUPORTE */}
+          {activeTab === 'suporte' && (
+            <section className="p-6 md:p-10">
+              <h2 className="text-5xl font-black text-red-600 mb-8 tracking-wider">🎧 SUPORTE</h2>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {[
+                  { title: '💬 Chat', desc: 'Fale com um moderador agora', btn: 'Iniciar Chat' },
+                  { title: '📧 Email', desc: 'contato@noxclan.com', btn: 'Enviar Email' },
+                  { title: '🎮 Discord', desc: 'Junte-se ao nosso servidor', btn: 'Entrar Discord' },
+                  { title: '❓ FAQ', desc: 'Perguntas frequentes', btn: 'Ver FAQ' }
+                ].map((supp, idx) => (
+                  <div key={idx} className="bg-red-950/30 border-2 border-red-700 rounded-xl p-8 hover:border-red-500 transition-all">
+                    <h3 className="text-2xl font-black text-red-600 mb-3">{supp.title}</h3>
+                    <p className="text-gray-400 mb-6">{supp.desc}</p>
+                    <button className="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition-all border-2 border-red-500">
+                      {supp.btn}
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <button onClick={() => setActiveTab('home')} className="px-8 py-3 bg-red-700 hover:bg-red-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 border-2 border-red-500">
+                ← Voltar ao Início
+              </button>
+            </section>
+          )}
+        </main>
+      </div>
     </div>
-
-    <div class="main-content">
-        <!-- Home -->
-        <div class="page active" id="home">
-            <div class="hero-section">
-                <h1 class="hero-title">[RP] Campinas</h1>
-                <p class="hero-subtitle">O melhor servidor de roleplay brasileiro no Roblox. Junte-se e viva histórias únicas em nossa comunidade vibrante e acolhedora.</p>
-                <div class="btn-group">
-                    <a href="https://www.roblox.com/pt/games/79582951280789/NOVA-CIDADE-CAMPINAS-RP" target="_blank" class="btn btn-primary">🎮 Conectar Agora</a>
-                    <a href="https://discord.gg/r2MwYZFwhh" target="_blank" class="btn btn-secondary">💬 Comunidade</a>
-                </div>
-            </div>
-
-            <div class="card-grid">
-                <div class="info-card">
-                    <h3>👥 Comunidade Ativa</h3>
-                    <p>Mais de 200 jogadores registrados em nossa comunidade vibrante e acolhedora com eventos diários.</p>
-                </div>
-                <div class="info-card">
-                    <h3>🚗 Veículos Exclusivos</h3>
-                    <p>Grande variedade de veículos personalizados e exclusivos do servidor com sistema de tuning avançado.</p>
-                </div>
-                <div class="info-card">
-                    <h3>💼 Empregos Únicos</h3>
-                    <p>Sistema de trabalhos completo com várias profissões realistas para construir sua carreira no RP.</p>
-                </div>
-                <div class="info-card">
-                    <h3>🛡️ Anti-Cheat Avançado</h3>
-                    <p>Sistema de proteção de última geração contra cheats, modificações e comportamentos suspeitos.</p>
-                </div>
-                <div class="info-card">
-                    <h3>🎧 Suporte 24/7</h3>
-                    <p>Nossa equipe especializada está sempre disponível para resolver qualquer problema ou dúvida.</p>
-                </div>
-                <div class="info-card">
-                    <h3>🎉 Eventos Especiais</h3>
-                    <p>Eventos regulares com premiações exclusivas, torneios e atividades especiais para toda comunidade.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Loja -->
-        <div class="page" id="store">
-            <div class="content-card">
-                <h2>🛒 Loja</h2>
-                <p>Adquira gamepasses e vantagens exclusivas dentro do nosso jogo no Roblox.</p>
-                <div class="card-grid">
-                    <div class="info-card">
-                        <h3>⭐ VIP Único</h3>
-                        <p>Benefícios exclusivos no jogo, status especial e vantagens únicas.</p>
-                        <p><strong>R$25</strong></p>
-                    </div>
-                    <div class="info-card">
-                        <h3>🛡️ Colete</h3>
-                        <p>Proteção extra para seu personagem dentro do jogo.</p>
-                        <p><strong>R$15</strong></p>
-                    </div>
-                    <div class="info-card">
-                        <h3>🚗 Carros Básicos</h3>
-                        <p>Acesso a veículos simples para facilitar sua locomoção.</p>
-                        <p><strong>R$20</strong></p>
-                    </div>
-                    <div class="info-card">
-                        <h3>🏎️ Carros de Luxo</h3>
-                        <p>Dirija veículos de luxo e destaque-se nas ruas de Campinas RP.</p>
-                        <p><strong>R$50</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Informações -->
-        <div class="page" id="info">
-            <div class="content-card">
-                <h2>📋 Informações</h2>
-                <div class="card-grid">
-                    <div class="info-card">
-                        <h3>🎮 Roblox</h3>
-                        <a href="https://www.roblox.com/pt/games/79582951280789/NOVA-CIDADE-CAMPINAS-RP" target="_blank" class="btn btn-primary">▶ Jogar Agora</a>
-                    </div>
-                    <div class="info-card">
-                        <h3>👥 Slots</h3>
-                        <p>100 jogadores</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>💬 Discord</h3>
-                        <a href="https://discord.gg/r2MwYZFwhh" target="_blank" class="btn btn-secondary">💬 Entrar no Discord</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Suporte -->
-        <div class="page" id="support">
-            <div class="content-card">
-                <h2>🎧 Suporte</h2>
-                <p>Precisa de ajuda? Entre em contato:</p>
-                <div class="card-grid">
-                    <div class="info-card"><h3>📧 Email</h3><p>suporte@campinasrp.com</p></div>
-                    <div class="info-card"><h3>💬 Discord</h3><p>#suporte</p></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            event.target.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+  );
+}
